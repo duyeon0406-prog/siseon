@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나만의 비밀</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Jua', sans-serif;
+            background-color: #fdf8f5;
+            color: #333;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: #d9534f;
+            margin: 0;
+        }
+
+        .header p {
+            font-size: 1.5rem;
+            color: #555;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #f7cac9;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-item {
+            padding: 20px 40px;
+            /* 세로 간격 */
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .left {
+            left: -15%;
+            padding-right: 80px;
+            /* 가로 간격 */
+            text-align: right;
+        }
+
+        .right {
+            left: 50%;
+            padding-left: 80px;
+            /* 가로 간격 */
+        }
+
+        .content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* (꾸미기) 중앙선에 붙는 동그라미 (공통) */
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid #d9534f;
+
+            /* (가장 중요) 모든 원의 세로 위치를 40px로 통일 */
+            top: 40px;
+
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        /* 왼쪽 카드의 동그라미 위치 (가로만) */
+        .left::after {
+            right: -28.5px;
+            /* top 속성 없음! */
+        }
+
+        /* 오른쪽 카드의 동그라미 위치 (가로만) */
+        .right::after {
+            left: -14px;
+            /* top 속성 없음! */
+        }
+
+        /* 카드 내용 */
+        .content h2 {
+            font-size: 1.8rem;
+            color: #d9534f;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        .content .date {
+            font-size: 1rem;
+            color: #777;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .content p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .content img {
+            width: 100%;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        /* --- 반응형 (모바일) --- */
+        @media screen and (max-width: 600px) {
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .left,
+            .right {
+                left: 0%;
+                text-align: left;
+            }
+
+            /* (수정) 동그라미 위치 조정 (모바일 버그 수정) */
+            .left::after,
+            .right::after {
+                left: 18px;
+                right: auto;
+                /* 기존 right 속성 초기화 */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <audio controls autoplay loop>
+        <source src="금목걸이.mp3" type="audio/mpeg">
+        이 브라우저는 오디오 태그를 지원하지 않습니다.
+    </audio>
+
+    <div class="header">
+        <h1>그동안 내 속마음들</h1>
+        <p>숨겼던 내 시선에서 우리 만남이야</p>
+    </div>
+
+    <div class="timeline">
+
+        <div class="timeline-item left">
+            <div class="content">
+                <h2>시작</h2>
+                <span class="date">2025년 6월 25일</span>
+                <p>우리가 사귄 날이야. 내가 누나랑 사귈 수 있을거라고<br>
+                    생각하지 못했는데 정말 운이 좋은 사람인가
+                    결국 우리가 됐네 지금 알려주지만 비계에 저렇게 올리고
+                    엄청 신나했었어 만나기 전에도 저러면서 긴장 엄청했었어<br>
+                </p>
+                <img src="./img/first.jpg" alt="사진">
+                <img src="./img/goback.jpg" alt="사진">
+            </div>
+        </div>
+
+        <div class="timeline-item right">
+            <div class="content">
+                <h2>플러팅 당함</h2>
+                <span class="date">2025년 6월 26일</span>
+                <p>사귄 바로 다음날 이렇게 연락 와서 진짜 놀랐어<br>
+                    내가 알던 누나 맞나 싶기도 하고, 이런 말 듣는게 믿기지도 않고<br>
+                    범상치 않다 싶었어 내가 몰랐던 매력들이 있구나 라고 생각도 들었는데<br>
+                    이러다 엄청 빠지게 되는거 아닌가 걱정도 들었어<br>
+                    지금 생각해보니까 저건 아무것도 아닌 플러팅이었더라고..
+                </p>
+                <img src="./img/chat.jpg" alt="사진">
+            </div>
+        </div>
+
+        <div class="timeline-item left">
+            <div class="content">
+                <h2>실감</h2>
+                <span class="date">2025년 7월 2일</span>
+                <p>이런 카페 가니까 나 진짜 연애하는구나 싶었어
+                    거의 몇년만에 저런 예쁜 카페 가는 것 같아
+                    저거 스토리에 올렸는데 애들이 걱정하더라
+                    안하던 짓 하면 죽는다고 그래서 그 말 듣고 좀 웃겼었어
+                    <img src="./img/cafe.jpg" alt="사진">
+                </p>
+            </div>
+        </div>
+
+        <div class="timeline-item right">
+            <div class="content">
+                <h2>귀여웠어 엄청</h2>
+                <span class="date">2025년 7월 31일</span>
+                <p>화장실 갔다 왔는데 갑자기 저 인형 들고 있어서<br>
+                    순간 처음엔 뭔지 몰라서 뭐지 했는데 보니까 인형인데<br>
+                    가족여행 가서 나 주고 싶어서 사온게 너무 귀엽고 고맙고
+                    예뻤어 그런 마음이 아마 이 때 누나도 날 좋아하구나 확실하게
+                    느껴졌던 것 같아
+                    <img src="./img/gift.jpg" alt="사진">
+                </p>
+
+            </div>
+        </div>
+        <div class="timeline-item left">
+            <div class="content">
+                <h2>엉뚱함..? 허당..?</h2>
+                <span class="date">2025년 8월 27일</span>
+                <p>처음에 아이클레이 만들자 해서 나 못만들까봐 엄청 걱정했었는데
+                    누나랑 나름 비슷비슷하게는 한 것 같아서 좀 다행이었어 ㅎㅎ<br>
+                    피글렛은 재료가 너무 부족해서 못한거잖아 맞지?<br>
+                    징징이랑 뚱이는 잘만들었다고 생각했어 진심으로<br>
+                    <img src="./img/clay.jpg" alt="사진">
+                </p>
+            </div>
+
+        </div>
+
+        <div class="timeline-item right">
+            <div class="content">
+                <h2>안하던 짓하기</h2>
+                <span class="date">2025년 9월 1일</span>
+                <p>나 가챠같은거 안뽑는데 헬로키티 보자마자 해야겠다 싶었어<br>
+                    근데 뭔가 꼭 갖고싶은것만 안나오더라고 그래서 열받아서 계속했는데<br>
+                    나중에 보니까 저렇게 되어있더라고 깜짝 놀랐어 ㅎㅎ<br>
+                    그래도 누나가 좋아하는모습 보니까 후회는 없었어 절대
+                    <img src="./img/hellokitty.jpg" alt="사진">
+                    <img src="./img/money.jpg" alt="사진">
+                </p>
+            </div>
+
+        </div>
+        <div class="timeline-item left">
+            <div class="content">
+                <h2>100일 !!</h2>
+                <span class="date">2025년 10월 2일</span>
+                <p>누나가 계속 돌아가자 하고 뭔가 숙소가는 길이랑 안 맞게 가길래
+                    엥 뭐지 어디 가고 싶은가, 숙소 가기 아쉬운건가 하고 말았는데
+                    들어가서 저 케이크 보자마자 진짜 놀랐었어
+                    사실 내가 생각한 누난 잘못 생각했었는지 저런거 안할 것 같았었는데
+                    반전이라 느껴져서 그런건가 더 감동이었어
+                    케이크도 너무 예쁘고 맛있었어. 촛불도 너무 귀여워서 우리도 저런 날이 오길 바라고 있어 
+                    <img src="./img/100.jpg" alt="사진">
+                </p>
+            </div>
+
+        </div>
+
+       
+        <script>
+            // 스크롤 이벤트를 감지해서 애니메이션 효과를 주는 함수
+            function revealTimelineItems() {
+                const items = document.querySelectorAll('.timeline-item');
+                const windowHeight = window.innerHeight;
+
+                items.forEach(item => {
+                    const itemTop = item.getBoundingClientRect().top;
+                    const revealPoint = 100;
+
+                    if (itemTop < windowHeight - revealPoint) {
+                        item.classList.add('visible');
+                    } else {
+                        // (선택사항) 스크롤을 다시 올렸을 때 애니메이션을 반복하고 싶다면
+                        // item.classList.remove('visible');
+                    }
+                });
+            }
+            window.addEventListener('scroll', revealTimelineItems);
+            revealTimelineItems();
+
+            
+        </script>
+</body>
+
+</html>
